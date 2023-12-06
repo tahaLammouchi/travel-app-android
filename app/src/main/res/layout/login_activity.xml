@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="fitCenter"
+
+    android:background="@drawable/bgblue"
+
+    tools:context=".Login">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/companylogo" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/bgwhite"
+        app:cardCornerRadius="28dp"
+        android:layout_marginBottom="-20dp"
+        android:layout_alignParentBottom="true"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bgwhite"
+
+            android:orientation="vertical"
+            android:padding="28dp">
+
+            <FrameLayout
+                android:id="@+id/circleImageView"
+                android:layout_width="120dp"
+                android:layout_gravity="center"
+                android:layout_height="120dp"
+                android:layout_centerInParent="true"
+                android:padding="10dp">
+
+                <!-- Circular background -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/circle"
+                    android:scaleType="fitCenter" />
+
+                <!-- Logo inside the circle -->
+                <ImageView
+                    android:id="@+id/AddNewImageView"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/person_add" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="48dp"></View>
+            <TextView
+                android:id="@+id/RegisterTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textvoilet"
+                android:textStyle="italic"
+                android:textSize="32sp"
+                android:gravity="center"
+                android:text="LOGIN" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></View>
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:alpha="0.7"
+                android:layout_marginLeft="8dp"
+                android:layout_height="wrap_content"
+                android:text="Email" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/password"
+                android:layout_marginLeft="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0.7"
+
+                android:text="Password" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:hint="" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></View>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:backgroundTint="@color/btngreen"
+                android:text="LOG IN" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></View>
+
+            <TextView
+                android:id="@+id/registertitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:alpha="0.7"
+                android:text="Don't have account ?, click to register"  />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></View>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>>
+
+
+</RelativeLayout>
