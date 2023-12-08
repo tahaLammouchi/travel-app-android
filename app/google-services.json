@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "858957823389",
-    "project_id": "travel-app-5ab03",
-    "storage_bucket": "travel-app-5ab03.appspot.com"
+    "project_number": "907794422726",
+    "firebase_url": "https://travel-app-100f6-default-rtdb.firebaseio.com",
+    "project_id": "travel-app-100f6",
+    "storage_bucket": "travel-app-100f6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:858957823389:android:0a08e71bbd5c5837674374",
+        "mobilesdk_app_id": "1:907794422726:android:01c721d3bff265218af0c7",
         "android_client_info": {
           "package_name": "com.example.travel_app"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBs05qsa2GYEqaXkdyNpy9S2zVfqm12c0k"
+          "current_key": "AIzaSyBeZcDMnWXvBUAaRndnSmBBKE56pXGLSh4"
         }
       ],
       "services": {

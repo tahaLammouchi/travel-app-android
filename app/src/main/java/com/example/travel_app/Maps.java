@@ -28,7 +28,7 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback,GoogleM
 
     GoogleMap gMap;
     FrameLayout map;
-    String name, description, country;
+    String title, description, country;
 
 
 
@@ -42,7 +42,7 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback,GoogleM
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         Intent i = getIntent();
-        name = i.getStringExtra("title");
+        title = i.getStringExtra("title");
         description = i.getStringExtra("description");
         country="";
     }
@@ -75,7 +75,6 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback,GoogleM
         } catch (IOException e) {
             // Handle the exception here
             Toast.makeText(this, "Error retrieving address information: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-
         }
         showConfirmationDialog(clickedLatitude, clickedLongitude, country);
     }
@@ -88,18 +87,20 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback,GoogleM
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(Maps.this, "Location confirmed!"+country, Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(Maps.this, AddTravel.class);
-                        i.putExtra("latitude", latitude);
-                        i.putExtra("longitude", longitude);
-                        i.putExtra("country", country);
-                        startActivity(i);
+                        Intent resultIntent = new Intent();
+                        resultIntent.putExtra("title", title);
+                        resultIntent.putExtra("description", description);
+                        resultIntent.putExtra("latitude", latitude);
+                        resultIntent.putExtra("longitude", longitude);
+                        resultIntent.putExtra("country", country);
+                        setResult(RESULT_OK, resultIntent);
+                        finish();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // User canceled, you can handle this if needed
-                        Toast.makeText(Maps.this, "Location not confirmed.", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 })
                 .show();

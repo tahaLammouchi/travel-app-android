@@ -3,17 +3,17 @@ package com.example.travel_app.entities;
 public class Travel {
     private String title;
     private String description;
-
     private String country;
-
     private Double latitude;
     private Double longitude;
+    private String imageUrl;
 
-    public Travel(String title, String description, Double latitude, Double longitude) {
+    public Travel(String title, String description, String imageUrl, Double latitude, Double longitude) {
         this.title = title;
         this.description = description;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {
@@ -30,6 +30,14 @@ public class Travel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Double getLatitude() {
