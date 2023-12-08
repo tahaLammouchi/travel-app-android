@@ -2,5 +2,7 @@
 <resources>
     <color name="textvoilet">#2D0C57</color>
     <color name="bgwhite">#F6F5F5</color>
+    <color name="gris">#BFBFBF</color>
     <color name="btngreen">#FF0BCE83</color>
+    <color name="focus">#8888D9</color>
 </resources>

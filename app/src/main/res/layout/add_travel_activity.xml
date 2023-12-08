@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgwhite"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".AddTravel">
+    <ImageView
+        android:id="@+id/add_travel_back"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/back"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
+        android:text="Create a new travel :" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="5dp">
+    <ImageView
+        android:id="@+id/add_travel_picture"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/select_picture"
+        android:scaleType="fitXY" />
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/add_travel_camera"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/camera"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="16sp"
+            android:layout_marginLeft="8dp"
+            android:textColor="#A597B4" />
+
+        <EditText
+            android:id="@+id/add_travel_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custon_input"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:hint="Enter a title"
+            android:inputType="text" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="16sp"
+            android:layout_marginLeft="8dp"
+            android:textColor="#A597B4" />
+        <EditText
+            android:id="@+id/add_travel_descrption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custon_input"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:hint="Enter a description"
+            android:inputType="textMultiLine"
+            android:lines="3" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_travel_select_emplacement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:layout_marginTop="20dp"
+        android:text="SELECT EMPLACEMENT"
+        />
+    <Button
+        android:id="@+id/add_travel_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/btngreen"
+        android:text="CREATE"
+        />
+
+</LinearLayout>
