@@ -8,9 +8,10 @@ public class Travel {
     private Double longitude;
     private String imageUrl;
 
-    public Travel(String title, String description, String imageUrl, Double latitude, Double longitude) {
+    public Travel(String title, String description, String country, String imageUrl, Double latitude, Double longitude) {
         this.title = title;
         this.description = description;
+        this.country = country;
         this.latitude = latitude;
         this.longitude = longitude;
         this.imageUrl = imageUrl;

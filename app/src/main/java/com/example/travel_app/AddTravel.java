@@ -153,7 +153,7 @@ public class AddTravel extends AppCompatActivity {
                         while (!uriTask.isComplete());
                         Uri urlImage = uriTask.getResult();
                         imageURL = urlImage.toString();
-                        Travel travel = new Travel(title,description,imageURL,latitude,longitude);
+                        Travel travel = new Travel(title,description, country, imageURL,latitude,longitude);
                         FirebaseDatabase.getInstance().getReference("Travel").child(title).setValue(travel).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
