@@ -8,12 +8,14 @@
     android:orientation="vertical"
     android:padding="15dp"
     tools:context=".UpdateActivity">
+
     <ImageView
         android:id="@+id/back_btn"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:src="@drawable/back"
         android:layout_marginTop="20dp"/>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -24,8 +26,18 @@
         android:textStyle="bold|italic"
         android:text="Update travel :" />
 
-    <androidx.cardview.widget.CardView
+    <ImageView
+        android:id="@+id/travel_img"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/select_picture"
+        android:scaleType="fitXY" />
+
+
+    <!--<androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
+        android:id="@+id/card_img"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
         android:layout_margin="5dp">
@@ -36,7 +48,7 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/select_picture"
             android:scaleType="fitXY" />
-    </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>-->
 
     <ImageView
         android:id="@+id/travel_camera"
@@ -51,7 +63,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginBottom="16dp">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +70,6 @@
             android:textSize="16sp"
             android:layout_marginLeft="8dp"
             android:textColor="#A597B4" />
-
         <EditText
             android:id="@+id/title_input"
             android:layout_width="match_parent"
@@ -70,6 +80,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:hint="Enter a title"
+            android:lines="3"
             android:inputType="text" />
     </LinearLayout>
     <LinearLayout

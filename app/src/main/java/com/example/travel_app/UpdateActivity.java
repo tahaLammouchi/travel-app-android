@@ -35,16 +35,16 @@ import com.google.firebase.storage.UploadTask;
 public class UpdateActivity extends AppCompatActivity {
 
     ImageView travel_img;
+    EditText title_input, description_input;
+    String title="", description="",country="";
     Button select_emplacement_btn, update_btn;
-    EditText description_input, title_input;
 
     Double latitude, longitude;
 
-    String country="", title, description;
     String imageUrl;
-    String key, oldImageURL;
+    String key, oldImageURL = "";
     Uri uri;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference = null;
     StorageReference storageReference;
 
     @Override
@@ -56,6 +56,23 @@ public class UpdateActivity extends AppCompatActivity {
         description_input = findViewById(R.id.description_input);
         travel_img = findViewById(R.id.travel_img);
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null){
+            Toast.makeText(UpdateActivity.this, "title : " + bundle.getString("Title"), Toast.LENGTH_LONG).show();
+            title_input.setText(bundle.getString("Title"));
+            description_input.setText(bundle.getString("Description"));
+            oldImageURL = bundle.getString("Image");
+            Glide.with(this).load(oldImageURL).into(travel_img);
+
+            //// because its always empty (i need to go back to the root that sets it and give it value
+            // WAIT I THINK I KNOW WHY , BECAUSE THE OLD DATA INSIDE FIREBASE DIDN't HAVE COUNTRY ?
+            if(bundle.getString("Country") != null)
+                country =  bundle.getString("Country");
+            key = bundle.getString("Key");
+            longitude = bundle.getDouble("Longitude");
+            latitude = bundle.getDouble("Latitude");
+
+        }
         update_btn = findViewById(R.id.update_btn);
         select_emplacement_btn = findViewById(R.id.select_emplacement_btn);
         select_emplacement_btn.setOnClickListener(new View.OnClickListener() {
@@ -80,20 +97,7 @@ public class UpdateActivity extends AppCompatActivity {
                     }
                 }
         );
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null){
-            Glide.with(UpdateActivity.this).load(bundle.getString("Image")).into(travel_img);
-            title_input.setText(bundle.getString("Title"));
-            description_input.setText(bundle.getString("Description"));
-            country =  bundle.getString("Country");
-            key = bundle.getString("Key");
-            oldImageURL = bundle.getString("Image");
-            longitude = bundle.getDouble("Longitude");
-            latitude = bundle.getDouble("Latitude");
-            Log.i("buuuu" ,"" + getIntent().getExtras().toString());
 
-        }
-        databaseReference = FirebaseDatabase.getInstance().getReference("Travel").child(key);
 
         travel_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,8 +111,6 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveData();
-                Intent intent = new Intent(UpdateActivity.this, Home.class);
-                startActivity(intent);
             }
         });
     }
@@ -135,7 +137,8 @@ public class UpdateActivity extends AppCompatActivity {
                 description_input.setText(description);
                 this.title = title;
                 this.description = description;
-                this.country = country;
+                if(country != null && country != "")
+                    this.country = country;
                 this.latitude = latitude;
                 this.longitude = longitude;
             }
@@ -170,10 +173,16 @@ public class UpdateActivity extends AppCompatActivity {
     public void updateData(){
         title = title_input.getText().toString().trim();
         description = description_input.getText().toString().trim();
-
-
+        Log.w("badis", title + "-" + description + "-" + country + "-" + latitude + "-" + longitude + "-" + imageUrl);
         Travel dataClass = new Travel(title, description,country, imageUrl, latitude, longitude);
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Travel").child(key);
         databaseReference.setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -181,6 +190,7 @@ public class UpdateActivity extends AppCompatActivity {
                     StorageReference reference = FirebaseStorage.getInstance().getReferenceFromUrl(oldImageURL);
                     reference.delete();
                     Toast.makeText(UpdateActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                     finish();
                 }
             }

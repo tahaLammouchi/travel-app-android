@@ -37,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
         description = findViewById(R.id.detail_description);
         image = findViewById(R.id.detail_image);
         title = findViewById(R.id.detail_title);
-        country = findViewById(R.id.detail_title);
+        country = findViewById(R.id.detail_country);
         gotomap = findViewById(R.id.detail_map);
         home_btn = findViewById(R.id.home_btn);
         deleteButton = findViewById(R.id.deleteButton);
@@ -59,11 +59,14 @@ public class DetailActivity extends AppCompatActivity {
         if (intent != null){
             description.setText(intent.getStringExtra("Description"));
             title.setText(intent.getStringExtra("Title"));
-            country.setText(intent.getStringExtra("Country"));
-            key = intent.getStringExtra("Title");
+            key = intent.getStringExtra("Key");
             imageUrl = intent.getStringExtra("Image");
             longitude = intent.getDoubleExtra("Latitude", 0.0);
             longitude = intent.getDoubleExtra("Longitude", 0.0);
+
+            if (intent.getStringExtra("Country") != null) // because for some reason the country is always null
+                country.setText(intent.getStringExtra("Country"));
+
             Glide.with(this).load(imageUrl).into(image);
         }
 
@@ -92,15 +95,19 @@ public class DetailActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailActivity.this, UpdateActivity.class)
-                        .putExtra("Title", title.getText().toString())
-                        .putExtra("Description", description.getText().toString())
-                        .putExtra("Country", country.getText().toString())
-                        .putExtra("Image", imageUrl)
-                        .putExtra("Latitude", latitude)
-                        .putExtra("Longitude", longitude)
-                        .putExtra("Key", key);
-                startActivity(intent);
+                Intent i = getIntent();
+                if (i != null){
+                    Intent intent = new Intent(DetailActivity.this, UpdateActivity.class)
+                            .putExtra("Title", i.getStringExtra("Title"))
+                            .putExtra("Description", i.getStringExtra("Description"))
+                            .putExtra("Key", key)
+                            .putExtra("Image", imageUrl)
+                            .putExtra("Latitude", latitude)
+                            .putExtra("Longitude", longitude)
+                            .putExtra("Country", country.getText().toString());
+                    startActivity(intent);
+                }
+
             }
         });
         gotomap.setOnClickListener(new View.OnClickListener() {
