@@ -39,24 +39,28 @@ public class AddTravel extends AppCompatActivity {
         private ImageView backButton, travelPicture;
 
     private Button selectEmplacementButton, createButton;
-        private Double latitude, longitude;
-        private String country="",title,description;
-        private String imageURL;
-        private Uri uri;
+    private Double latitude, longitude;
+    private String country="",title,description;
+    private String imageURL;
+    private Uri uri;
 
-        FirebaseAuth mAuth;
+    /*FirebaseAuth mAuth;
+    FirebaseUser currentUser;
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(mAuth != null)
+            if(mAuth.getCurrentUser() != null)
+                currentUser = mAuth.getCurrentUser();
+
         if(currentUser == null){
             Intent intent = new Intent(AddTravel.this, Login.class);
             startActivity(intent);
             finish();
         }
-    }
+    }*/
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -153,12 +157,14 @@ public class AddTravel extends AppCompatActivity {
                         while (!uriTask.isComplete());
                         Uri urlImage = uriTask.getResult();
                         imageURL = urlImage.toString();
-                        Travel travel = new Travel(title,description, country, imageURL,latitude,longitude);
+                        Travel travel = new Travel(title,description,country,imageURL,latitude,longitude);
                         FirebaseDatabase.getInstance().getReference("Travel").child(title).setValue(travel).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
                                     Toast.makeText(AddTravel.this, "Travel saved with success !", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(AddTravel.this, Home.class);
+                                    startActivity(i);
                                     finish();
                                 }
                             }

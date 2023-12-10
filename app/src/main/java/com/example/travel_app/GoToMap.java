@@ -25,7 +25,7 @@ public class GoToMap extends FragmentActivity implements OnMapReadyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.go_to_map_details);
+        setContentView(R.layout.activity_go_to_map);
 
         map = findViewById(R.id.map2);
         closeMap = findViewById(R.id.closeMap);

@@ -7,6 +7,19 @@ public class Travel {
     private Double latitude;
     private Double longitude;
     private String imageUrl;
+    /*--------------------added by badis--------------------*/
+    private String key;
+    public String getKey() {
+        return key;
+    }
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public Travel(){
+
+    }
+    /*------------------------------------------------------*/
 
     public Travel(String title, String description, String country, String imageUrl, Double latitude, Double longitude) {
         this.title = title;
