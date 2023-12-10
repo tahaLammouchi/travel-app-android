@@ -7,7 +7,6 @@ public class Travel {
     private Double latitude;
     private Double longitude;
     private String imageUrl;
-
     /*--------------------added by badis--------------------*/
     private String key;
     public String getKey() {

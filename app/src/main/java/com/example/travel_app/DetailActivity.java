@@ -26,7 +26,6 @@ public class DetailActivity extends AppCompatActivity {
     String key = "";
     String imageUrl = "";
     Double latitude,longitude;
-
     FloatingActionButton deleteButton, editButton;
 
 
@@ -54,7 +53,6 @@ public class DetailActivity extends AppCompatActivity {
         Glide.with(this).load(imageUrl).into(image);*/
 
         // Here i get the values from badis intent
-
         Intent intent = getIntent();
         if (intent != null){
             description.setText(intent.getStringExtra("Description"));
@@ -89,6 +87,7 @@ public class DetailActivity extends AppCompatActivity {
                 });
             }
         });
+
         // Here its edit logic from the tutorial , i didnt implement it in xml do it your way
         // Maybe here you wanna use AddTravel (activity) instead of DetailActivity to show the form of edit
         // Think on it <3
