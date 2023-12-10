@@ -8,9 +8,24 @@ public class Travel {
     private Double longitude;
     private String imageUrl;
 
-    public Travel(String title, String description, String imageUrl, Double latitude, Double longitude) {
+    /*--------------------added by badis--------------------*/
+    private String key;
+    public String getKey() {
+        return key;
+    }
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public Travel(){
+
+    }
+    /*------------------------------------------------------*/
+
+    public Travel(String title, String description, String country, String imageUrl, Double latitude, Double longitude) {
         this.title = title;
         this.description = description;
+        this.country = country;
         this.latitude = latitude;
         this.longitude = longitude;
         this.imageUrl = imageUrl;
