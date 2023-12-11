@@ -14,7 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -27,12 +30,17 @@ public class DetailActivity extends AppCompatActivity {
     String imageUrl = "";
     Double latitude,longitude;
     FloatingActionButton deleteButton, editButton;
+    FloatingActionMenu toggle_btn;
 
+    FirebaseUser user;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        auth = FirebaseAuth.getInstance();
+
         description = findViewById(R.id.detail_description);
         image = findViewById(R.id.detail_image);
         title = findViewById(R.id.detail_title);
@@ -41,7 +49,13 @@ public class DetailActivity extends AppCompatActivity {
         home_btn = findViewById(R.id.home_btn);
         deleteButton = findViewById(R.id.deleteButton);
         editButton = findViewById(R.id.editButton);
-
+        toggle_btn = findViewById(R.id.toggle_btn);
+        user = auth.getCurrentUser();
+        if (user != null)
+        if (!user.getEmail().equals("badiskefi@gmail.com")){
+            toggle_btn.setVisibility(View.GONE);
+            //.setVisibility(View.INVISIBLE);
+        }
         //There some static values for tests
         /*description.setText("Espagne is a good country Espagne is a good country Espagne is a good country Espagne is a good country Espagne is a good country Espagne is a good country");
         title.setText("Travel to Espagne");

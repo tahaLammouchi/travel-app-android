@@ -182,7 +182,7 @@ public class AddTravel extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                Toast.makeText(this, "CREATE button clicked\nTitle: " + title + "\nDescription: " + description, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "CREATE button clicked\nTitle: " + title + "\nDescription: " + description, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Please enter title and description and select emplacement", Toast.LENGTH_SHORT).show();
             }

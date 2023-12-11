@@ -58,7 +58,6 @@ public class UpdateActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
-            Toast.makeText(UpdateActivity.this, "title : " + bundle.getString("Title"), Toast.LENGTH_LONG).show();
             title_input.setText(bundle.getString("Title"));
             description_input.setText(bundle.getString("Description"));
             oldImageURL = bundle.getString("Image");

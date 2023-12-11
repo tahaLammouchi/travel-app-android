@@ -48,6 +48,7 @@ public class Home extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         logoutButton = findViewById(R.id.logout);
         addTravelButton = findViewById(R.id.addTravelButton);
+
         homeText  = findViewById(R.id.homeText);
         userText = findViewById(R.id.userText);
         user = auth.getCurrentUser();
@@ -57,8 +58,11 @@ public class Home extends AppCompatActivity {
             finish();
         }else{
             userText.setText(user.getEmail());
+            if(!user.getEmail().equals("badiskefi@gmail.com")){
+                addTravelButton.setVisibility(View.GONE);
+                //addTravelButton.setVisibility(View.INVISIBLE);
+            }
         }
-
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
