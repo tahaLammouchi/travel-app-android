@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="fitCenter"
+    android:background="@drawable/background_for_welcome_page"
+    tools:context=".WelcomeActivity">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/companylogo" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/bgwhite"
+        app:cardCornerRadius="28dp"
+        android:layout_marginBottom="-20dp"
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bgwhite"
+            android:orientation="vertical"
+            android:padding="28dp">
+
+            <FrameLayout
+                android:id="@+id/circleImageView"
+                android:layout_width="120dp"
+                android:layout_gravity="center"
+                android:layout_height="120dp"
+                android:layout_centerInParent="true"
+                android:padding="10dp">
+
+                <!-- Circular background -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/circle"
+                    android:scaleType="fitCenter" />
+
+                <!-- Logo inside the circle -->
+                <ImageView
+                    android:id="@+id/AddNewImageView"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/baseline_all_inbox_24"
+                    app:tint="@color/textvoilet"/>
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="28dp"></View>
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textvoilet"
+                android:layout_marginHorizontal="38dp"
+                android:textStyle="bold|italic"
+                android:textSize="32sp"
+                android:gravity="center"
+                android:text="The Best Locations To Visit" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></View>
+            <TextView
+                android:id="@+id/description_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="22dp"
+                android:letterSpacing="0.04"
+                android:lineSpacingExtra="6dp"
+                android:gravity="center"
+                android:alpha="0.7"
+                android:text="With our app , you will learn about new location around the world and see their geo location , who knows , maybe you will find your next trip."  />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></View>
+            <Button
+                android:id="@+id/keep_going_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:backgroundTint="@color/btngreen"
+                android:textColor="@color/white"
+                android:background="@drawable/button_background"
+                android:text="KEEP GOING >" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></View>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>>
+</RelativeLayout>

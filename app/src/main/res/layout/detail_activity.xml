@@ -17,7 +17,7 @@
         android:layout_height="250dp"
         android:padding="8dp"
         android:layout_gravity="center"
-        android:src="@drawable/uploadimg"
+        android:src="@drawable/uploadimg1"
         android:scaleType="fitXY"/>
 
     <LinearLayout

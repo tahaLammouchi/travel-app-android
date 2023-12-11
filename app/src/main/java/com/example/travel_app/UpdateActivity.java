@@ -181,6 +181,7 @@ public class UpdateActivity extends AppCompatActivity {
         builder.setView(R.layout.progress_layout);
         AlertDialog dialog = builder.create();
         dialog.show();
+        Log.w("badis ", key);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Travel").child(key);
         databaseReference.setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -189,15 +190,17 @@ public class UpdateActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     StorageReference reference = FirebaseStorage.getInstance().getReferenceFromUrl(oldImageURL);
                     reference.delete();
-                    Toast.makeText(UpdateActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                }
+                if(task.isComplete() || task.isCanceled()) {
                     dialog.dismiss();
-                    finish();
+                    //finish();
+                    Intent i = new Intent(UpdateActivity.this, Home.class);
+                    startActivity(i);
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(UpdateActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }

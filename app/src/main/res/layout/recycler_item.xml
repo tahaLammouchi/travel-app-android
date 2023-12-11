@@ -19,7 +19,7 @@
             android:layout_width="188dp"
             android:layout_height="120dp"
             android:id="@+id/recImage"
-            android:src="@drawable/uploadimg"
+            android:src="@drawable/uploadimg1"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
             />

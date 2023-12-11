@@ -43,6 +43,7 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:textColor="@color/white"
                 android:background="@drawable/button_background"
                 android:paddingLeft="36dp"
                 app:icon="@drawable/baseline_add_box_24"
@@ -81,7 +82,8 @@
         app:searchIcon="@drawable/baseline_search_24"
 
         android:background="@drawable/lavender_border"
-        android:backgroundTint="@color/white"/>
+        android:backgroundTint="@color/white"
+        app:queryBackground="@android:color/transparent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="10dp"
