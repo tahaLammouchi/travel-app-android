@@ -145,35 +145,36 @@ public class UpdateActivity extends AppCompatActivity {
         }
     }
     public void saveData(){
-        storageReference = FirebaseStorage.getInstance().getReference().child("Android Images").child(uri.getLastPathSegment());
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
-        builder.setCancelable(false);
-        builder.setView(R.layout.progress_layout);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isComplete());
-                Uri urlImage = uriTask.getResult();
-                imageUrl = urlImage.toString();
-                updateData();
-                dialog.dismiss();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                dialog.dismiss();
-            }
-        });
+        if(uri != null){
+            storageReference = FirebaseStorage.getInstance().getReference().child("Android Images").child(uri.getLastPathSegment());
+            AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
+            builder.setCancelable(false);
+            builder.setView(R.layout.progress_layout);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.isComplete());
+                    Uri urlImage = uriTask.getResult();
+                    imageUrl = urlImage.toString();
+                    updateDataWithImage();
+                    dialog.dismiss();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    dialog.dismiss();
+                }
+            });
+        }
+        else
+            updateDataWithoutImage();
     }
-    public void updateData(){
+    public void updateDataWithImage(){
         title = title_input.getText().toString().trim();
         description = description_input.getText().toString().trim();
-        Log.w("badis", title + "-" + description + "-" + country + "-" + latitude + "-" + longitude + "-" + imageUrl);
         Travel dataClass = new Travel(title, description,country, imageUrl, latitude, longitude);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
@@ -181,7 +182,6 @@ public class UpdateActivity extends AppCompatActivity {
         builder.setView(R.layout.progress_layout);
         AlertDialog dialog = builder.create();
         dialog.show();
-        Log.w("badis ", key);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Travel").child(key);
         databaseReference.setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -200,8 +200,34 @@ public class UpdateActivity extends AppCompatActivity {
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
+            public void onFailure(@NonNull Exception e) { }
+        });
+    }
+    public void updateDataWithoutImage(){
+        title = title_input.getText().toString().trim();
+        description = description_input.getText().toString().trim();
+        Travel dataClass = new Travel(title, description,country, imageUrl, latitude, longitude);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Travel").child(key);
+        databaseReference.setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isComplete() || task.isCanceled()) {
+                    dialog.dismiss();
+                    //finish();
+                    Intent i = new Intent(UpdateActivity.this, Home.class);
+                    startActivity(i);
+                }
             }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) { }
         });
     }
 }
