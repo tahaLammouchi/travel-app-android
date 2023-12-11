@@ -206,7 +206,7 @@ public class UpdateActivity extends AppCompatActivity {
     public void updateDataWithoutImage(){
         title = title_input.getText().toString().trim();
         description = description_input.getText().toString().trim();
-        Travel dataClass = new Travel(title, description,country, imageUrl, latitude, longitude);
+        Travel dataClass = new Travel(title, description,country, oldImageURL, latitude, longitude);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
         builder.setCancelable(false);
